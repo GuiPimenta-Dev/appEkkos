@@ -15,7 +15,7 @@ export default {
       const response = await request.json();
       return response;
     },
-/*
+
     signIn: async (email, password) => {
       const request = await fetch(`${baseAPI}/auth/login`, {
         method: 'POST',
@@ -59,7 +59,7 @@ export default {
       const response = await request.json();
       return response;
     },
-  
+  /*
     getBarbers: async (lat = null, lng = null, address = '') => {
       const token = await AsyncStorage.getItem('token');
       const request = await fetch(

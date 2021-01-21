@@ -3,7 +3,7 @@ import {Text} from 'react-native';
 
 import {Container} from './styles';
 
-const Appointments = () => {
+const Favorites = () => {
   return (
     <Container>
       <Text>Favorites Screen</Text>
@@ -11,4 +11,4 @@ const Appointments = () => {
   );
 };
 
-export default Appointments;
+export default Favorites;

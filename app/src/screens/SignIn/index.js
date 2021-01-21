@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 import {useNavigation} from '@react-navigation/native';
-//*import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StyleSheet,Image } from 'react-native';
 
 
@@ -18,7 +18,6 @@ import {
 
 import Api from '../../Api';
 
-import BarberLogo from '../../assets/barber.svg';
 import InputField from '../../components/InputField';
 import EmailIcon from '../../assets/email.svg';
 import LockIcon from '../../assets/lock.svg';
@@ -30,7 +29,7 @@ const SignIn = () => {
   const [passwordField, setPasswordField] = useState('');
 
   const navigation = useNavigation();
- /*
+ 
   const handleSignPress = async () => {
     if (emailField.trim() !== '' && passwordField.trim() !== '') {
       const response = await Api.signIn(emailField, passwordField);
@@ -63,7 +62,7 @@ const SignIn = () => {
       routes: [{name: 'SignUp'}],
     });
   };
-*/
+
   return (
     <Container>
       <Image   
@@ -85,12 +84,12 @@ const SignIn = () => {
           password
         />
 
-        <CustomButton>
+        <CustomButton onPress={handleSignPress}>
           <CustomButtonText>LOGIN</CustomButtonText>
         </CustomButton>
       </FormArea>
 
-      <SignMessage >
+      <SignMessage onPress={handleSignMessagePress}>
         <SignMessageText>Ainda não possui uma conta?</SignMessageText>
         <SignMessageTextBold>Cadastre-se</SignMessageTextBold>
       </SignMessage>
