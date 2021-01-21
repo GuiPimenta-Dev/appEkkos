@@ -5,7 +5,7 @@ import CustomTabBar from '../components/CustomTabBar';
 
 import Home from '../screens/Home';
 import Search from '../screens/Search';
-import Appointments from '../screens/Appointments';
+import Appointments from '../screens/Appointments/index';
 import Favorites from '../screens/Favorites';
 import Profile from '../screens/Profile';
 

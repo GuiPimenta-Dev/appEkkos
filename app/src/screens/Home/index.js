@@ -5,18 +5,8 @@ import { Container } from './styles';
 import Post from '../../components/Post'
 import Header from '../../components/Header'
 
-const Home = () => {
-
-
-  const comments = [{
-    nickname: 'Gabriel Alves Pimenta',
-    comment: 'Guilherme programa muito'
-  },
-  {
-    nickname: 'Sonia Pimenta',
-    comment: 'Que orgulho do meu filho!'
-  }
-  ]
+//const Home = () => {
+class Home extends Component {
 
   state = {
     posts: [{
@@ -46,23 +36,22 @@ const Home = () => {
       ]
     }]
   }
+  render(){
+    return (
+      <Container>
+        <Header />
+        <FlatList
+          data={this.state.posts}
+          keyExtractor={item => `${item.id}`}
+          renderItem={({ item }) =>
+            <Post key={item.id} {...item} />} />
 
-  return (
-    <Container>
-      <Header />
-      <FlatList
-        data={this.state.posts}
-        keyExtractor={item => `${item.id}`}
-        renderItem={({ item }) =>
-          <Post key={item.id} {...item} />} />
-
-      {/* <Post image={require('../../assets/fence.jpg')}
-        comments={comments}
-      /> */}
-
-    </Container>
-  );
+      
+      </Container>
+      );
+  };
 };
+
 
 export default Home;
 
