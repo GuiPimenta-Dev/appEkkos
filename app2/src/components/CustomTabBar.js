@@ -48,42 +48,42 @@ const CustomTabBar = ({state, navigation}) => {
   return (
     <TabArea>
       <TabItem onPress={() => goTo('Home')}>
-        <HomeIcon
+        {/* <HomeIcon
           width="24"
           height="24"
           fill={state.index === 0 ? '#fff' : '#777'}
-        />
+        /> */}
       </TabItem>
 
       <TabItem onPress={() => goTo('Search')}>
-        <SearchIcon
+        {/* <SearchIcon
           width="24"
           height="24"
           fill={state.index === 1 ? '#fff' : '#777'}
-        />
+        /> */}
       </TabItem>
 
       <CenterTabItem onPress={() => goTo('Appointments')}>
-        <TodayIcon width="32" height="32" fill="#444" />
+        {/* <TodayIcon width="32" height="32" fill="#444" /> */}
       </CenterTabItem>
 
       <TabItem onPress={() => goTo('Favorites')}>
-        <FavoriteIcon
+        {/* <FavoriteIcon
           width="24"
           height="24"
           fill={state.index === 3 ? '#fff' : '#777'}
-        />
+        /> */}
       </TabItem>
 
       <TabItem onPress={() => goTo('Profile')}>
         {user.avatar !== '' ? (
           <AvatarIcon source={{uri: user.avatar}} />
         ) : (
-          <AccountIcon
+          {/* <AccountIcon
             width="24"
             height="24"
             fill={state.index === 4 ? '#fff' : '#777'}
-          />
+          /> */}
         )}
       </TabItem>
     </TabArea>

@@ -21,23 +21,33 @@ const CameraScreen = () =>{
     return <Text>No access to camera</Text>;
   }
 
-  _takePictureButtonPressed = async () => {
-    if (this._cameraInstance) {
-      // console.log('')
+  //const cameraInstance = useRef(null)
 
-      const photo = await this._cameraInstance.takePictureAsync()
+  // takePictureButtonPressed = async () => {
+  //   if (cameraInstance) {
+  //     // console.log('')
 
-      setPhoto(photo);
-      console.log(photo)
+  //     const photo = await cameraInstance.takePictureAsync()
+
+  //     setPhoto(photo);
+  //     console.log(photo)
+  //   }
+  // }
+
+  snap = async () => {
+    if (this.camera) {
+      let photo = await this.camera.takePictureAsync();
     }
-  }
+  };
 
 
   return (
     <View style={styles.container}>
       <Camera style={styles.camera} 
               type={type}
-              ref={ref => (this._cameraInstance = ref)}
+              ref={ref => {
+                this.camera = ref;
+              }}
               >
         <View style={styles.buttonContainer}>
           <TouchableOpacity
@@ -53,16 +63,7 @@ const CameraScreen = () =>{
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
-            onPress={ async () => {
-    if (this._cameraInstance) {
-      // console.log('')
-
-      const photo = await this._cameraInstance.takePictureAsync()
-
-      setPhoto(photo);
-      console.log(photo)
-    }
-  } }
+            onPress={ snap() }
             >
             <Text style={styles.text}> Tirar foto </Text>
           </TouchableOpacity>
@@ -95,3 +96,5 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
+
+export default CameraScreen;
