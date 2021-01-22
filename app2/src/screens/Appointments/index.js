@@ -36,10 +36,17 @@ const CameraScreen = () =>{
   //   }
   // }
 
+<<<<<<< Updated upstream
   const snap = async () => {
     if (cameraRef.current) {
       console.log("sim")
       let photo = await cameraRef.current.takePictureAsync();
+=======
+  snap = async () => {
+    if (this.camera) {
+      let photo = await this.camera.takePictureAsync();
+      console.log(photo)
+>>>>>>> Stashed changes
     }
   };
 
