@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
 
@@ -6,6 +6,8 @@ const CameraScreen = () =>{
   const [photo,setPhoto] = useState(null);
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
+
+  const cameraRef = useRef(null)
 
   useEffect(() => {
     (async () => {
@@ -34,9 +36,10 @@ const CameraScreen = () =>{
   //   }
   // }
 
-  snap = async () => {
-    if (this.camera) {
-      let photo = await this.camera.takePictureAsync();
+  const snap = async () => {
+    if (cameraRef.current) {
+      console.log("sim")
+      let photo = await cameraRef.current.takePictureAsync();
     }
   };
 
@@ -45,9 +48,7 @@ const CameraScreen = () =>{
     <View style={styles.container}>
       <Camera style={styles.camera} 
               type={type}
-              ref={ref => {
-                this.camera = ref;
-              }}
+              ref={cameraRef}
               >
         <View style={styles.buttonContainer}>
           <TouchableOpacity
@@ -63,7 +64,7 @@ const CameraScreen = () =>{
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
-            onPress={ snap() }
+            onPress={ ()=> snap() }
             >
             <Text style={styles.text}> Tirar foto </Text>
           </TouchableOpacity>
