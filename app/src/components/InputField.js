@@ -23,7 +23,7 @@ export const Input = styled.TextInput`
 export default function InputField({IconSvg, placeholder, value, onChangeText, password}) {
   return (
     <InputArea>
-      {/* <IconSvg width="24" height="24" fill="#555" /> */}
+      <IconSvg width="24" height="24" fill="#555" />
       <Input
         placeholder={placeholder}
         placeholderTextColor="#555"

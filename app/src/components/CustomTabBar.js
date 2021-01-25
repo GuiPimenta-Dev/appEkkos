@@ -1,13 +1,13 @@
-import React, {useContext} from 'react';
-import styled from 'styled-components/native';
+import React, { useContext } from "react";
+import styled from "styled-components/native";
 
-import {UserContext} from '../contexts/UserContext';
+import { UserContext } from "../contexts/UserContext";
 
-import HomeIcon from '../assets/home.svg';
-import SearchIcon from '../assets/search.svg';
-import TodayIcon from '../assets/today.svg';
-import FavoriteIcon from '../assets/favorite.svg';
-import AccountIcon from '../assets/account.svg';
+import HomeIcon from "../assets/home.svg";
+import SearchIcon from "../assets/search.svg";
+import TodayIcon from "../assets/today.svg";
+import FavoriteIcon from "../assets/favorite.svg";
+import AccountIcon from "../assets/account.svg";
 
 const TabArea = styled.View`
   height: 60px;
@@ -38,8 +38,8 @@ const AvatarIcon = styled.Image`
   border-radius: 24px;
 `;
 
-const CustomTabBar = ({state, navigation}) => {
-  const {state: user} = useContext(UserContext);
+const CustomTabBar = ({ state, navigation }) => {
+  const { state: user } = useContext(UserContext);
 
   const goTo = (screenName) => {
     navigation.navigate(screenName);
@@ -47,43 +47,43 @@ const CustomTabBar = ({state, navigation}) => {
 
   return (
     <TabArea>
-      <TabItem onPress={() => goTo('Home')}>
-        {/* <HomeIcon
+      <TabItem onPress={() => goTo("Home")}>
+        <HomeIcon
           width="24"
           height="24"
-          fill={state.index === 0 ? '#fff' : '#777'}
-        /> */}
+          fill={state.index === 0 ? "#fff" : "#777"}
+        />
       </TabItem>
 
-      <TabItem onPress={() => goTo('Search')}>
-        {/* <SearchIcon
+      <TabItem onPress={() => goTo("Search")}>
+        <SearchIcon
           width="24"
           height="24"
-          fill={state.index === 1 ? '#fff' : '#777'}
-        /> */}
+          fill={state.index === 1 ? "#fff" : "#777"}
+        />
       </TabItem>
 
-      <CenterTabItem onPress={() => goTo('Appointments')}>
-        {/* <TodayIcon width="32" height="32" fill="#444" /> */}
+      <CenterTabItem onPress={() => goTo("Appointments")}>
+        <TodayIcon width="32" height="32" fill="#444" />
       </CenterTabItem>
 
-      <TabItem onPress={() => goTo('Favorites')}>
-        {/* <FavoriteIcon
+      <TabItem onPress={() => goTo("Favorites")}>
+        <FavoriteIcon
           width="24"
           height="24"
-          fill={state.index === 3 ? '#fff' : '#777'}
-        /> */}
+          fill={state.index === 3 ? "#fff" : "#777"}
+        />
       </TabItem>
 
-      <TabItem onPress={() => goTo('Profile')}>
-        {user.avatar !== '' ? (
-          <AvatarIcon source={{uri: user.avatar}} />
+      <TabItem onPress={() => goTo("Profile")}>
+        {user.avatar !== "" ? (
+          <AvatarIcon source={{ uri: user.avatar }} />
         ) : (
-          {/* <AccountIcon
+          <AccountIcon
             width="24"
             height="24"
-            fill={state.index === 4 ? '#fff' : '#777'}
-          /> */}
+            fill={state.index === 4 ? "#fff" : "#777"}
+          />
         )}
       </TabItem>
     </TabArea>
