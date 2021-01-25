@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-const InputArea = styled.View`
+export const InputArea = styled.View`
   width: 100%;
   height: 60px;
   background-color: #ccc;
@@ -12,17 +12,18 @@ const InputArea = styled.View`
   margin-bottom: 15px;
 `;
 
-const Input = styled.TextInput`
+export const Input = styled.TextInput`
   flex: 1;
   font-size: 16px;
   color: #555;
   margin-left: 10px;
 `;
 
-const InputField = ({IconSvg, placeholder, value, onChangeText, password}) => {
+
+export default function InputField({IconSvg, placeholder, value, onChangeText, password}) {
   return (
     <InputArea>
-      <IconSvg width="24" height="24" fill="#555" />
+      {/* <IconSvg width="24" height="24" fill="#555" /> */}
       <Input
         placeholder={placeholder}
         placeholderTextColor="#555"
@@ -33,5 +34,3 @@ const InputField = ({IconSvg, placeholder, value, onChangeText, password}) => {
     </InputArea>
   );
 };
-
-export default InputField;

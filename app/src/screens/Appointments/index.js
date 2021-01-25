@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
 
@@ -6,6 +6,8 @@ const CameraScreen = () =>{
   const [photo,setPhoto] = useState(null);
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
+
+  const cameraRef = useRef(null)
 
   useEffect(() => {
     (async () => {
@@ -21,23 +23,32 @@ const CameraScreen = () =>{
     return <Text>No access to camera</Text>;
   }
 
-  _takePictureButtonPressed = async () => {
-    if (this._cameraInstance) {
-      // console.log('')
+  //const cameraInstance = useRef(null)
 
-      const photo = await this._cameraInstance.takePictureAsync()
+  // takePictureButtonPressed = async () => {
+  //   if (cameraInstance) {
+  //     // console.log('')
 
-      setPhoto(photo);
-      console.log(photo)
+  //     const photo = await cameraInstance.takePictureAsync()
+
+  //     setPhoto(photo);
+  //     console.log(photo)
+  //   }
+  // }
+
+  const snap = async () => {
+    if (cameraRef.current) {
+      console.log("sim")
+      let photo = await cameraRef.current.takePictureAsync();
     }
-  }
+  };
 
 
   return (
     <View style={styles.container}>
       <Camera style={styles.camera} 
               type={type}
-              ref={ref => (this._cameraInstance = ref)}
+              ref={cameraRef}
               >
         <View style={styles.buttonContainer}>
           <TouchableOpacity
@@ -53,16 +64,7 @@ const CameraScreen = () =>{
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
-            onPress={ async () => {
-    if (this._cameraInstance) {
-      // console.log('')
-
-      const photo = await this._cameraInstance.takePictureAsync()
-
-      setPhoto(photo);
-      console.log(photo)
-    }
-  } }
+            onPress={ ()=> snap() }
             >
             <Text style={styles.text}> Tirar foto </Text>
           </TouchableOpacity>
@@ -95,3 +97,5 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
+
+export default CameraScreen;
