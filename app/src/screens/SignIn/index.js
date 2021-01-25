@@ -1,4 +1,6 @@
 import React, {useState, useContext} from 'react';
+import { connect } from 'react-redux';
+import { login } from '../../store/actions/user'
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StyleSheet,Image } from 'react-native';
@@ -111,5 +113,12 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapDispatchToProps = dispatch => {
+  return {
+    onLogin: user => dispatch(login(user))
+  }
+}
 
-export default SignIn;
+export default connect(null, mapDispatchToProps)(SignIn)
+
+//export default SignIn;
