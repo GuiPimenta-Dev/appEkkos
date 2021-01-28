@@ -1,7 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components/native";
-
-import { UserContext } from "../contexts/UserContext";
 
 import HomeIcon from "../assets/home.svg";
 import SearchIcon from "../assets/search.svg";
@@ -39,7 +37,8 @@ const AvatarIcon = styled.Image`
 `;
 
 const CustomTabBar = ({ state, navigation }) => {
-  const { state: user } = useContext(UserContext);
+
+  const user = {avatar: ""}
 
   const goTo = (screenName) => {
     navigation.navigate(screenName);

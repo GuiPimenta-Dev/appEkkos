@@ -5,15 +5,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Api from '../../Api';
 
-import {UserContext} from '../../contexts/UserContext';
-
 import {Container, LoadingIcon} from './styles';
-
 
 
 const Preload = () => {
   
-  const {dispatch: userDispatch} = useContext(UserContext);
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -25,13 +21,6 @@ const Preload = () => {
 
         if (response.token) {
           await AsyncStorage.setItem('token', response.token);
-
-          userDispatch({
-            type: 'setAvatar',
-            payload: {
-              avatar: response.data.avatar,
-            },
-          });
 
           navigation.reset({
             routes: [{name: 'MainTab'}],

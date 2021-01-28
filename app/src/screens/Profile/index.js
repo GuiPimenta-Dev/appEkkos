@@ -1,16 +1,17 @@
 import React from 'react';
 import {Text, Button} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-
+import { useDispatch } from "react-redux";
 import {Container} from './styles';
-
-import Api from '../../Api';
+import { logout } from "../../store/actions/auth";
 
 const Profile = () => {
   const navigation = useNavigation();
 
+  const dispatch = useDispatch()
+
   const handleLogoutClick = async () => {
-    await Api.logout();
+    dispatch(logout())
     navigation.reset({
       routes: [{name: 'SignIn'}],
     });

@@ -1,9 +1,9 @@
-import React, {useState, useContext} from 'react';
-import {useNavigation} from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { StyleSheet,Image } from 'react-native';
+import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { StyleSheet, Image } from "react-native";
 
-import {UserContext} from '../../contexts/UserContext';
+import { register } from "../../store/actions/auth";
 
 import {
   Container,
@@ -13,61 +13,56 @@ import {
   SignMessage,
   SignMessageText,
   SignMessageTextBold,
-} from './styles';
+} from "./styles";
 
-import Api from '../../Api';
+import Api from "../../Api";
 
-import InputField from '../../components/InputField';
-import PersonIcon from '../../assets/person.svg';
-import EmailIcon from '../../assets/email.svg';
-import LockIcon from '../../assets/lock.svg';
+import InputField from "../../components/InputField";
+import PersonIcon from "../../assets/person.svg";
+import EmailIcon from "../../assets/email.svg";
+import LockIcon from "../../assets/lock.svg";
 
 const SignUp = () => {
-  const {dispatch: userDispatch} = useContext(UserContext);
+  const [nameField, setNameField] = useState("");
+  const [emailField, setEmailField] = useState("");
+  const [passwordField, setPasswordField] = useState("");
 
-  const [nameField, setNameField] = useState('');
-  const [emailField, setEmailField] = useState('');
-  const [passwordField, setPasswordField] = useState('');
+  const [successful, setSuccessful] = useState(false);
 
   const navigation = useNavigation();
 
-  const handleSignPress = async () => {
-    if (nameField === '' || emailField.trim() !== '' || passwordField !== '') {
-      const response = await Api.signUp(nameField, emailField, passwordField);
+  const dispatch = useDispatch();
 
-      if (response.token) {
-        await AsyncStorage.setItem('token', response.token);
-
-        userDispatch({
-          type: 'setAvatar',
-          payload: {
-            avatar: response.data.avatar,
-          },
+  const handleSignPress = () => {
+    if (nameField !== "" && emailField.trim() !== "" && passwordField !== "") {
+      dispatch(register(nameField, emailField, passwordField))
+        .then(() => {
+          navigation.reset({
+            routes: [{ name: "MainTab" }],
+          });
+          setSuccessful(true);
+        })
+        .catch((e) => {
+          alert(`Error: ${e}`);
+          setSuccessful(false);
         });
-
-        navigation.reset({
-          routes: [{name: 'MainTab'}],
-        });
-      } else {
-        alert(`Error: ${response.error}`);
-      }
     } else {
-      alert('Preencha todos os campos!');
+      alert("Preencha todos os campos!");
     }
   };
 
   const handleSignMessagePress = () => {
     navigation.reset({
-      routes: [{name: 'SignIn'}],
+      routes: [{ name: "SignIn" }],
     });
   };
 
   return (
     <Container>
-      <Image   
-        style={styles.tinyLogo}     
-        source={require('../../assets/EkkosLogo.png')}
-        />     
+      <Image
+        style={styles.tinyLogo}
+        source={require("../../assets/EkkosLogo.png")}
+      />
       <FormArea>
         <InputField
           IconSvg={PersonIcon}
@@ -107,7 +102,7 @@ const styles = StyleSheet.create({
     paddingTop: 50,
   },
   tinyLogo: {
-    width: '100%',
+    width: "100%",
     height: 160,
   },
   logo: {
@@ -115,7 +110,5 @@ const styles = StyleSheet.create({
     height: 58,
   },
 });
-
-
 
 export default SignUp;

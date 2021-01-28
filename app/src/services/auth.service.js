@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 // const API_URL = "http://localhost:8080/api/auth/";
 const API_URL = "https://api.b7web.com.br/devbarber/api";
 
-const register = (username, email, password) => {
+const register = (name, email, password) => {
   return axios({
     url: `${API_URL}/user`,
     method: "POST",
@@ -11,11 +11,11 @@ const register = (username, email, password) => {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    data: JSON.stringify({ username, email, password }),
+    data: JSON.stringify({ name, email, password }),
   });
 };
 
-const login = (username, password) => {
+const login = (email, password) => {
   return axios({
     method: "POST",
     url: `${API_URL}/auth/login`,
@@ -23,20 +23,19 @@ const login = (username, password) => {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    data: JSON.stringify({ username, password }),
+    data: JSON.stringify({ email, password }),
   }).then((response) => {
-    console.log(response.data);
-    if (response.data.accessToken) {
-      return AsyncStorage.setItem("user",response.data.accessToken).then(() => {
+    if (response.data.token) {
+      return AsyncStorage.setItem("token", response.data.token).then(() => {
         return response.data;
       });
     }
-    return response.data;
+    return Promise.reject();
   });
 };
 
 const logout = () => {
-  // localStorage.removeItem("user");
+  AsyncStorage.removeItem("token")
 };
 
 export default {

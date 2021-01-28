@@ -9,11 +9,13 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // const user = JSON.parse(localStorage.getItem("user"));
-const user = null;
+// const user = null;
 
-const initialState = user
-  ? { isLoggedIn: true, user }
-  : { isLoggedIn: false, user: null };
+// const initialState = user
+//   ? { isLoggedIn: true, user }
+//   : { isLoggedIn: false, user: null };
+
+const initialState = null;
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
