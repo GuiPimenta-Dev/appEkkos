@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 
 import HomeIcon from "../assets/home.svg";
 import SearchIcon from "../assets/search.svg";
-import TodayIcon from "../assets/today.svg";
+import PlusIcon from "../assets/plus.svg";
 import FavoriteIcon from "../assets/favorite.svg";
 import AccountIcon from "../assets/account.svg";
 
@@ -63,7 +63,7 @@ const CustomTabBar = ({ state, navigation }) => {
       </TabItem>
 
       <CenterTabItem onPress={() => goTo("Appointments")}>
-        <TodayIcon width="32" height="32" fill="#444" />
+        <PlusIcon width="32" height="32" fill="#444" />
       </CenterTabItem>
 
       <TabItem onPress={() => goTo("Favorites")}>
