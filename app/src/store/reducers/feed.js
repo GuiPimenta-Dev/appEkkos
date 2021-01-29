@@ -40,14 +40,18 @@ export default function (state = initialState, action) {
 
   switch (type) {
     case ADD_TO_FEED:
-      console.log(type,payload)
+      
+      console.log(payload.photo)
+
+
+
       return {
         ...state,
         data: [
           ...state.data,
           {
             id: Object.keys(state.data).length + 1,
-            source: require("../../assets/stories/1.jpg"),
+            source: require('../../assets/stories/1.jpg'),
             user: payload.user,
             avatar: require("../../assets/avatars/andrea.schmidt.png"),
           },

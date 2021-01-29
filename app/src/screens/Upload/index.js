@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 const CameraScreen = () =>{  
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
+  const dispatch = useDispatch();
   
 
   const cameraRef = useRef(null)
@@ -30,17 +31,16 @@ const CameraScreen = () =>{
 
   const snap = async () => {
     
-    const dispatch = useDispatch();
+    
 
     if (cameraRef.current) {      
       let photo = await cameraRef.current.takePictureAsync();
 
-      alert(photo)
-      
+            
       dispatch({
         type: ADD_TO_FEED,
         payload: {
-          photo,
+          photo: photo.uri,
           user: 'Guilherme Alves Pimenta',
           avatar: '../../assets/avatars/jmitch.png'
         },

@@ -53,7 +53,7 @@ const { width, height } = Dimensions.get("window");
 export default function Home() {
   const PostsJSON = useSelector((state) => state.feed.data);
 
-  // console.log(PostsJSON)
+
 
   const navigationOptions = {
     tabBarOptions: {
