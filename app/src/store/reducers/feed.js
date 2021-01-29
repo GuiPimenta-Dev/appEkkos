@@ -50,8 +50,8 @@ export default function (state = initialState, action) {
         data: [
           ...state.data,
           {
-            id: Object.keys(state.data).length + 1,
-            source: require('../../assets/stories/1.jpg'),
+            id: ""+Object.keys(state.data).length + 1,
+            source: {uri: payload.photo},
             user: payload.user,
             avatar: require("../../assets/avatars/andrea.schmidt.png"),
           },

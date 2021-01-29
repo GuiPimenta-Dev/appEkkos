@@ -5,6 +5,7 @@ import {
   Dimensions,
   StyleSheet,
   StatusBar,
+  Button,
 } from "react-native";
 import Posts from "../../components/Post";
 
@@ -46,33 +47,21 @@ import { useSelector } from "react-redux";
 //   },
 // ];
 
-const { width, height } = Dimensions.get("window");
-
 // import { Container } from './styles';
 
 export default function Home() {
   const PostsJSON = useSelector((state) => state.feed.data);
 
-
-
-  const navigationOptions = {
-    tabBarOptions: {
-      showLabel: false,
-      activeTintColor: "#FFFEFF",
-      inactiveTintColor: "#9E9BA2",
-      style: {
-        backgroundColor: "transparent",
-        borderTopWidth: 0,
-        position: "absolute",
-      },
-    },
-  };
+  const { width, height } = Dimensions.get("window");
 
   return (
     <>
-      <StatusBar translucent backgroundColor="transparent" />
+      {/* <StatusBar translucent backgroundColor="transparent" /> */}
       <View style={styles.container}>
-        <FlatList
+
+        
+        
+        {/* <FlatList
           data={PostsJSON}
           renderItem={({ item, index }) => (
             <Posts {...{ item, index }} key={index.toString()} />
@@ -80,7 +69,11 @@ export default function Home() {
           keyExtractor={(item) => item.id}
           snapToInterval={height}
           decelerationRate={"fast"}
-        />
+        /> */}
+      <Button title={"testEEEEEEEEE"}/>
+      <Button title={"testEEEEEEEEE"}/>
+      <Button title={"testEEEEEEEEE"}/>
+      <Button title={"testEEEEEEEEE"}/>
       </View>
     </>
   );
