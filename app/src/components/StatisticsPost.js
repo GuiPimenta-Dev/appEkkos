@@ -51,11 +51,8 @@ export default class StatisticsPost extends React.Component {
 
     return (
       <View style={styles.statistics}>
-        {/* <Comments
-          ref={this.comment}
-          modalVisible={this.state.modalVisible}
-          setModalVisible={this.setModalVisible}
-        /> */}
+        {/* 
+         */}
         <View style={styles.items}>
           <TouchableWithoutFeedback onPress={this.actionLike}>
             <AntDesign

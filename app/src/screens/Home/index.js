@@ -2,6 +2,14 @@ import React from 'react';
 import {View, FlatList, Dimensions, StyleSheet, StatusBar} from 'react-native';
 import Posts from '../../components/Post';
 
+import { useSelector } from 'react-redux';
+
+
+
+// const PostsJSON = useSelector(state => state.data);
+// console.log(PostsJSON)
+
+
 const PostsJSON = [
   {
     id: '2',
@@ -34,6 +42,8 @@ const PostsJSON = [
     avatar: require('../../assets/avatars/andrea.schmidt.png'),
   },
 ];
+
+
 
 const {width, height} = Dimensions.get('window');
 

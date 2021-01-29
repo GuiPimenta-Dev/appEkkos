@@ -62,7 +62,7 @@ const CustomTabBar = ({ state, navigation }) => {
         />
       </TabItem>
 
-      <CenterTabItem onPress={() => goTo("Appointments")}>
+      <CenterTabItem onPress={() => goTo("Upload")}>
         <PlusIcon width="32" height="32" fill="#444" />
       </CenterTabItem>
 

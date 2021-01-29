@@ -2,10 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
 
-const CameraScreen = () =>{
-  const [photo,setPhoto] = useState(null);
+import { ADD_TO_FEED } from '../../store/actions/types'
+import { useDispatch } from 'react-redux';
+
+const CameraScreen = () =>{  
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
+  
 
   const cameraRef = useRef(null)
 
@@ -23,23 +26,27 @@ const CameraScreen = () =>{
     return <Text>No access to camera</Text>;
   }
 
-  //const cameraInstance = useRef(null)
 
-  // takePictureButtonPressed = async () => {
-  //   if (cameraInstance) {
-  //     // console.log('')
-
-  //     const photo = await cameraInstance.takePictureAsync()
-
-  //     setPhoto(photo);
-  //     console.log(photo)
-  //   }
-  // }
 
   const snap = async () => {
-    if (cameraRef.current) {
-      console.log("sim")
+    
+    const dispatch = useDispatch();
+
+    if (cameraRef.current) {      
       let photo = await cameraRef.current.takePictureAsync();
+
+      alert(photo)
+      
+      dispatch({
+        type: ADD_TO_FEED,
+        payload: {
+          photo,
+          user: 'Guilherme Alves Pimenta',
+          avatar: '../../assets/avatars/jmitch.png'
+        },
+      })
+
+      
     }
   };
 
