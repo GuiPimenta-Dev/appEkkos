@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity,SafeAreaView } from 'react-native';
 import { Camera } from 'expo-camera';
 
 import { ADD_TO_FEED } from '../../store/actions/types'
@@ -31,16 +31,16 @@ const CameraScreen = () =>{
 
   const snap = async () => {
     
-    
+
 
     if (cameraRef.current) {      
-      let photo = await cameraRef.current.takePictureAsync();
+      let photo = await cameraRef.current.takePictureAsync();   
 
             
       dispatch({
         type: ADD_TO_FEED,
         payload: {
-          photo: photo.uri,
+          photo: photo.uri,          
           user: 'Guilherme Alves Pimenta',
           avatar: '../../assets/avatars/jmitch.png'
         },
@@ -52,7 +52,7 @@ const CameraScreen = () =>{
 
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Camera style={styles.camera} 
               type={type}
               ref={cameraRef}
@@ -77,7 +77,7 @@ const CameraScreen = () =>{
           </TouchableOpacity>
         </View>
       </Camera>
-    </View>
+    </SafeAreaView>
   );
 }
 

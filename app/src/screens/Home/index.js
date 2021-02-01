@@ -47,7 +47,7 @@ import { useSelector } from "react-redux";
 //   },
 // ];
 
-// import { Container } from './styles';
+//import { Container } from './styles';
 
 export default function Home() {
   const PostsJSON = useSelector((state) => state.feed.data);
@@ -56,12 +56,10 @@ export default function Home() {
 
   return (
     <>
-      {/* <StatusBar translucent backgroundColor="transparent" /> */}
-      <View style={styles.container}>
-
+      <StatusBar translucent backgroundColor="transparent" />
+      <View style={styles.container}>       
         
-        
-        {/* <FlatList
+        <FlatList
           data={PostsJSON}
           renderItem={({ item, index }) => (
             <Posts {...{ item, index }} key={index.toString()} />
@@ -69,11 +67,8 @@ export default function Home() {
           keyExtractor={(item) => item.id}
           snapToInterval={height}
           decelerationRate={"fast"}
-        /> */}
-      <Button title={"testEEEEEEEEE"}/>
-      <Button title={"testEEEEEEEEE"}/>
-      <Button title={"testEEEEEEEEE"}/>
-      <Button title={"testEEEEEEEEE"}/>
+        />
+ 
       </View>
     </>
   );
