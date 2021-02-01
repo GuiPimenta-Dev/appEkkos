@@ -41,10 +41,6 @@ export default function (state = initialState, action) {
   switch (type) {
     case ADD_TO_FEED:
       
-      console.log(payload.photo)
-
-
-
       return {
         ...state,
         data: [
