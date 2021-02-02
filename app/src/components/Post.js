@@ -61,22 +61,11 @@ export default class Posts extends React.Component {
     return (
       <TouchableWithoutFeedback onPress={evt => this.onDoublePress(evt)}>
         <View style={styles.container}>
-          {/* <Image
+          <Image
             key={id.toString()}
             source={source}
             style={styles.backgroundStyle}
-          /> */}
-          <Video          
-          source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
-          rate={1.0}
-          volume={1.0}
-          isMuted={false}
-          resizeMode="cover"
-          shouldPlay
-          isLooping
-          style={ styles.backgroundStyle}
-          />
-
+          />         
           {this.state.likesP.map(item => {
             return item;
           })}

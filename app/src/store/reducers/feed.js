@@ -1,57 +1,41 @@
 import { ADD_TO_FEED } from "../actions/types";
 
-// const initialState = {
-//   data: [
-//     {
-//       id: "2",
-//       // source: require("../../assets/stories/2.jpg"),
-//       source: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
-//       user: "derek.russel",
-//       avatar: require("../../assets/avatars/derek.russel.png"),
-//     },
-//     {
-//       id: "4",
-//       source: require("../../assets/stories/4.jpg"),
-//       user: "jmitch",
-//       avatar: require("../../assets/avatars/jmitch.png"),
-//     },
-//     {
-//       id: "5",
-//       source: require("../../assets/stories/5.jpg"),
-//       user: "monicaa",
-//       avatar: require("../../assets/avatars/monicaa.png"),
-//     },
-//     {
-//       id: "3",
-//       source: require("../../assets/stories/3.jpg"),
-//       user: "alexandergarcia",
-//       avatar: require("../../assets/avatars/alexandergarcia.png"),
-//     },
-//     {
-//       id: "1",
-//       source: require("../../assets/stories/1.jpg"),
-//       user: "andrea.schmidt",
-//       avatar: require("../../assets/avatars/andrea.schmidt.png"),
-//     },
-//   ],
-// };
+const initialState = {
+  data: [
+    {
+      id: "2",
+      // source: require("../../assets/stories/2.jpg"),
+      source: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+      user: "derek.russel",
+      avatar: require("../../assets/avatars/derek.russel.png"),
+    },
+    {
+      id: "4",
+      source: require("../../assets/stories/4.jpg"),
+      user: "jmitch",
+      avatar: require("../../assets/avatars/jmitch.png"),
+    },
+    {
+      id: "5",
+      source: require("../../assets/stories/5.jpg"),
+      user: "monicaa",
+      avatar: require("../../assets/avatars/monicaa.png"),
+    },
+    {
+      id: "3",
+      source: require("../../assets/stories/3.jpg"),
+      user: "alexandergarcia",
+      avatar: require("../../assets/avatars/alexandergarcia.png"),
+    },
+    {
+      id: "1",
+      source: require("../../assets/stories/1.jpg"),
+      user: "andrea.schmidt",
+      avatar: require("../../assets/avatars/andrea.schmidt.png"),
+    },
+  ],
+};
 
-const initialState = [
-  {
-    id: 0,
-    source:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-    poster:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerBlazes.jpg',
-  },
-  {
-    id: 2,
-    source:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
-    poster:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerMeltdowns.jpg',
-  },
-];
 
 export default function (state = initialState, action) {
   const { type, payload } = action;

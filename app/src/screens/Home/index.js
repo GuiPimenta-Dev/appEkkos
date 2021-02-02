@@ -1,212 +1,82 @@
-import React from 'react';
+import React, { useState } from "react";
 import {
-  StyleSheet,
-  Text,
   View,
   FlatList,
   Dimensions,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
-import { Video } from 'expo-av';
-import StatisticsPost from '../../components/StatisticsPost';
+  StyleSheet,
+  StatusBar,
+  Button,
+} from "react-native";
+import Posts from "../../components/Post";
 
-const { height, width } = Dimensions.get('window');
+import { useSelector } from "react-redux";
 
-const cellHeight = height;
-const cellWidth = width;
+// const PostsJSON = useSelector((state) => state.data);
+// console.log(PostsJSON);
 
-const viewabilityConfig = {
-  itemVisiblePercentThreshold: 80,
-};
+// const PostsJSON = [
+//   {
+//     id: '2',
+//     source: require('../../assets/stories/2.jpg'),
+//     user: 'derek.russel',
+//     avatar: require('../../assets/avatars/derek.russel.png'),
+//   },
+//   {
+//     id: '4',
+//     source: require('../../assets/stories/4.jpg'),
+//     user: 'jmitch',
+//     avatar: require('../../assets/avatars/jmitch.png'),
+//   },
+//   {
+//     id: '5',
+//     source: require('../../assets/stories/5.jpg'),
+//     user: 'monicaa',
+//     avatar: require('../../assets/avatars/monicaa.png'),
+//   },
+//   {
+//     id: '3',
+//     source: require('../../assets/stories/3.jpg'),
+//     user: 'alexandergarcia',
+//     avatar: require('../../assets/avatars/alexandergarcia.png'),
+//   },
+//   {
+//     id: '1',
+//     source: require('../../assets/stories/1.jpg'),
+//     user: 'andrea.schmidt',
+//     avatar: require('../../assets/avatars/andrea.schmidt.png'),
+//   },
+// ];
 
+//import { Container } from './styles';
 
+export default function Home() {
+  const PostsJSON = useSelector((state) => state.feed.data);
 
-const initialItems = [
-  {
-    id: 0,
-    url:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-    poster:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerBlazes.jpg',
-  },
-  {
-    id: 2,
-    url:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
-    poster:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerMeltdowns.jpg',
-  },
-];
+  const { width, height } = Dimensions.get("window");
 
-
-class Item extends React.PureComponent {
-  componentWillUnmount() {
-    if (this.video) {
-      this.video.unloadAsync();
-    }
-  }
-
-  async play() {
-    const status = await this.video.getStatusAsync();
-    if (status.isPlaying) {
-      return;
-    }
-    return this.video.playAsync();
-  }
-
-  pause() {
-    if (this.video) {
-      this.video.stopAsync();
-    }
-  }
-
-  render() {
-    const { id, poster, url } = this.props;
-    const uri = url + '?bust=' + id;
-    return (
-      <View style={styles.cell}>
-        {/* <Image
-          source={{
-            uri: poster,
-            cache: 'force-cache',
-          }}
-          style={[styles.full]}
-        /> */}
-        <Video
-          ref={(ref) => {
-            this.video = ref;
-          }}
-          source={{ uri }}
-          shouldPlay={false}
-          isMuted
-          resizeMode="cover"
-          style={styles.full}
-        />
-
-        <StatisticsPost />
+  return (
+    <>
+      <StatusBar translucent backgroundColor="transparent" />
+      <View style={styles.container}>       
         
-      </View>
-    );
-  }
-}
-
-export default class App extends React.PureComponent {
-  state = {
-    items: [],
-  };
-
-  constructor(props) {
-    super(props);
-    this.cellRefs = {};
-  }
-
-  componentDidMount() {
-    this.loadItems();
-    setTimeout(this.loadItems, 1000);
-    setTimeout(this.loadItems, 1100);
-    setTimeout(this.loadItems, 1200);
-    setTimeout(this.loadItems, 1300);
-  }
-
-  _onViewableItemsChanged = (props) => {
-    const changed = props.changed;
-    changed.forEach((item) => {
-      const cell = this.cellRefs[item.key];
-      if (cell) {
-        if (item.isViewable) {
-          cell.play();
-        } else {
-          cell.pause();
-        }
-      }
-    });
-  };
-
-  loadItems = () => {
-    const start = this.state.items.length;
-    const newItems = initialItems.map((item, i) => ({
-      ...item,
-      id: start + i,
-    }));
-    const items = [...this.state.items, ...newItems];
-    this.setState({ items });
-  };
-
-  _renderItem = ({ item }) => {
-    return (
-      <Item
-        ref={(ref) => {
-          this.cellRefs[item.id] = ref;
-        }}
-        {...item}
-      />
-    );
-  };
-
-  render() {
-    const { items } = this.state;
-    return (
-      <View style={styles.container}>
         <FlatList
-          style={{ flex: 1 }}
-          data={items}
-          renderItem={this._renderItem}
+          data={PostsJSON}
+          renderItem={({ item, index }) => (
+            <Posts {...{ item, index }} key={index.toString()} />
+          )}
           keyExtractor={(item) => item.id}
-          onViewableItemsChanged={this._onViewableItemsChanged}
-          initialNumToRender={3}
-          maxToRenderPerBatch={3}
-          windowSize={5}
-          getItemLayout={(_data, index) => ({
-            length: cellHeight,
-            offset: cellHeight * index,
-            index,
-          })}
-          viewabilityConfig={viewabilityConfig}
-          removeClippedSubviews={true}
-          ListFooterComponent={
-            <TouchableOpacity onPress={this.loadItems}>
-              <Text style={{ padding: 30 }}>Load more</Text>
-            </TouchableOpacity>
-          }
+          snapToInterval={height}
+          decelerationRate={"fast"}
         />
+ 
       </View>
-    );
-  }
+    </>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-  },
-  cell: {
-    width: cellWidth ,
-    height: cellHeight,
-    backgroundColor: '#eee',    
-    overflow: 'hidden',
-    
-  },
-  overlay: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    backgroundColor: 'rgba(0,0,0,0.4)',
-    padding: 40,
-  },
-  full: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-  },
-  poster: {
-    resizeMode: 'cover',
-  },
-  overlayText: {
-    color: '#fff',
+    backgroundColor: "#9E9BA2",
   },
 });
