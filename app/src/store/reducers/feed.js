@@ -4,8 +4,7 @@ const initialState = {
   data: [
     {
       id: "2",
-      // source: require("../../assets/stories/2.jpg"),
-      source: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+      source: require("../../assets/stories/2.jpg"),
       user: "derek.russel",
       avatar: require("../../assets/avatars/derek.russel.png"),
     },
