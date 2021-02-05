@@ -1,82 +1,143 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
+  Text,
+  TouchableOpacity,
   FlatList,
-  Dimensions,
-  StyleSheet,
   StatusBar,
-  Button,
 } from "react-native";
-import Posts from "../../components/Post";
+import { StyleSheet } from "react-native";
+import AudioSlider from "./AudioSlider";
+import AudioFile from "../../assets/counting.m4a";
+import Avatar from "../../components/Avatar";
+import StatisticsPost from "../../components/StatisticsPost";
 
-import { useSelector } from "react-redux";
-
-// const PostsJSON = useSelector((state) => state.data);
-// console.log(PostsJSON);
-
-// const PostsJSON = [
-//   {
-//     id: '2',
-//     source: require('../../assets/stories/2.jpg'),
-//     user: 'derek.russel',
-//     avatar: require('../../assets/avatars/derek.russel.png'),
-//   },
-//   {
-//     id: '4',
-//     source: require('../../assets/stories/4.jpg'),
-//     user: 'jmitch',
-//     avatar: require('../../assets/avatars/jmitch.png'),
-//   },
-//   {
-//     id: '5',
-//     source: require('../../assets/stories/5.jpg'),
-//     user: 'monicaa',
-//     avatar: require('../../assets/avatars/monicaa.png'),
-//   },
-//   {
-//     id: '3',
-//     source: require('../../assets/stories/3.jpg'),
-//     user: 'alexandergarcia',
-//     avatar: require('../../assets/avatars/alexandergarcia.png'),
-//   },
-//   {
-//     id: '1',
-//     source: require('../../assets/stories/1.jpg'),
-//     user: 'andrea.schmidt',
-//     avatar: require('../../assets/avatars/andrea.schmidt.png'),
-//   },
-// ];
-
-//import { Container } from './styles';
+const PostsJSON = [
+  {
+    id: "2",
+    source: AudioFile,
+    user: "derek.russel",
+    avatar: require("../../assets/avatars/derek.russel.png"),
+  },
+  {
+    id: "4",
+    source: AudioFile,
+    user: "jmitch",
+    avatar: require("../../assets/avatars/jmitch.png"),
+  },
+  {
+    id: "5",
+    source: AudioFile,
+    user: "monicaa",
+    avatar: require("../../assets/avatars/monicaa.png"),
+  },
+  {
+    id: "3",
+    source: AudioFile,
+    user: "alexandergarcia",
+    avatar: require("../../assets/avatars/alexandergarcia.png"),
+  },
+  {
+    id: "1",
+    source: AudioFile,
+    user: "andrea.schmidt",
+    avatar: require("../../assets/avatars/andrea.schmidt.png"),
+  },
+];
 
 export default function Home() {
-  const PostsJSON = useSelector((state) => state.feed.data);
-
-  const { width, height } = Dimensions.get("window");
-
   return (
     <>
-      <StatusBar translucent backgroundColor="transparent" />
-      <View style={styles.container}>       
-        
-        <FlatList
-          data={PostsJSON}
-          renderItem={({ item, index }) => (
-            <Posts {...{ item, index }} key={index.toString()} />
-          )}
-          keyExtractor={(item) => item.id}
-          snapToInterval={height}
-          decelerationRate={"fast"}
-        />
- 
-      </View>
+      <StatusBar backgroundColor="gray" />
+      <FlatList
+        data={PostsJSON}
+        renderItem={({ item, index }) => (
+          <ListedAudio {...{ item, index }} key={index.toString()} />
+        )}
+        keyExtractor={(item) => item.id}
+      />
     </>
   );
 }
 
+function ListedAudio({ item }) {
+  let { user, id, source, avatar } = item;
+
+  return (
+    <View
+      style={[
+        styles.StandardContainer,
+        {
+          padding: 3,
+          flex: 1,
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          marginTop: 4,
+          marginBottom: 2,
+        },
+      ]}
+    >
+      <View style={{ flex: 1, flexDirection: "row" }}>
+        <View
+          style={{ flex: 0, backgroundColor: "#fff", justifyContent: "center" }}
+        >
+          <Avatar {...{ user, avatar, id }} />
+        </View>
+        <View
+          style={{
+            flex: 0,
+            flexDirection: "row",
+            // justifyContent: "space-between",
+            // alignItems: "center"
+          }}
+        >
+          {/* <Text style={{ flex: 5, color: "gray", paddingHorizontal: 6 }}>{user}</Text> */}
+          {/* <TouchableOpacity style={[{ flex: 1 }]}>
+          <Text style={styles.StandardText}>Edit</Text>
+        </TouchableOpacity> */}
+        </View>
+        <View style={{ flex: 1, paddingTop: 7 }}>
+          <AudioSlider audio={source} />
+        </View>
+      </View>
+      {/* <View
+        style={{
+          // height: 3,
+          // backgroundColor: "lightgray",
+          // paddingHorizontal: 10,
+          width: "90%",
+          borderBottomColor: 'lightgray',
+          borderBottomWidth: StyleSheet.hairlineWidth,
+        }}
+      /> */}
+      <View style={{flex: 1,marginTop: 5}} >
+        <StatisticsPost />
+      </View>
+    </View>
+  );
+}
+
+const standardsStylesObject = {
+  backgroundColor: "white",
+  borderColor: "grey",
+  color: "black",
+  borderRadius: 5,
+  borderWidth: 0.5,
+  fontSizeNormal: 17,
+};
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#9E9BA2",
+  StandardText: {
+    fontSize: standardsStylesObject.fontSizeNormal,
+    padding: 6,
+    color: standardsStylesObject.color,
+  },
+  StandardContainer: {
+    borderRadius: standardsStylesObject.borderRadius,
+    borderWidth: standardsStylesObject.borderWidth,
+    borderColor: standardsStylesObject.borderColor,
+    backgroundColor: standardsStylesObject.backgroundColor,
+    marginLeft: 7,
+    marginRight: 7,
   },
 });

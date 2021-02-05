@@ -70,21 +70,18 @@ export default class Avatar extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container:{
-    padding:5,
-  },
   outerCircle: {
-    // marginTop: 50,
-    borderRadius: 46,
-    width: 46,
-    height: 46,
+    marginTop: 50,
+    borderRadius: 32,
+    width: 66,
+    height: 66,
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
   },
   logoStyle: {
-    height: 46,
-    width: 46,
-    borderRadius: 46 / 2,
+    height: 64,
+    width: 64,
+    borderRadius: 64 / 2,
   },
 });
