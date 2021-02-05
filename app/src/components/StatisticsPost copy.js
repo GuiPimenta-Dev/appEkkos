@@ -57,27 +57,27 @@ export default class StatisticsPost extends React.Component {
           <TouchableWithoutFeedback onPress={this.actionLike}>
             <AntDesign
               name={'heart'}
-              size={30}
-              color={isLike ? 'red' : 'gray'}
+              size={38}
+              color={isLike ? '#ff595e' : '#fff'}
             />
           </TouchableWithoutFeedback>
           <Text style={styles.itemText}>{likes}</Text>
         </View>
         <View style={styles.items}>
           <TouchableWithoutFeedback onPress={this.setModalVisible}>
-            <AntDesign name={'message1'} size={30} color={'gray'} />
+            <AntDesign name={'message1'} size={38} color={'#fff'} />
           </TouchableWithoutFeedback>
           <Text style={styles.itemText}>{comments}</Text>
         </View>
         <View style={styles.items}>
           <TouchableWithoutFeedback>
-            <AntDesign name={'upload'} size={30} color={'gray'} />
+            <AntDesign name={'upload'} size={38} color={'#fff'} />
           </TouchableWithoutFeedback>
           <Text style={styles.itemText}>{shares}</Text>
         </View>
         <View style={styles.items}>
           <TouchableWithoutFeedback>
-            <AntDesign name={'codepen'} size={30} color={'gray'} />
+            <AntDesign name={'codepen'} size={38} color={'#fff'} />
           </TouchableWithoutFeedback>
           <Text style={styles.itemText}>{isSave}</Text>
         </View>
@@ -89,21 +89,18 @@ export default class StatisticsPost extends React.Component {
 const styles = StyleSheet.create({
   statistics: {
     // backgroundColor: 'red',
-    flex:1,
-    flexDirection: "row",
-    justifyContent: "space-around"
-    // alignItems: 'flex-end',
-    // paddingHorizontal: 25,
-    // paddingVertical: 40,
+    alignItems: 'flex-end',
+    paddingHorizontal: 25,
+    paddingVertical: 40,
   },
   items: {
-    // marginBottom: 25,
+    marginBottom: 25,
     // backgroundColor: 'yellow',
     alignItems: 'center',
   },
   itemText: {
     // backgroundColor: 'green',
-    fontSize: 20,
-    color: 'gray',
+    fontSize: 24,
+    color: '#fff',
   },
 });
