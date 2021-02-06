@@ -11,7 +11,7 @@ import Home from '../screens/Home';
 import Search from '../screens/Search';
 import Upload from '../screens/Upload'
 import Favorites from '../screens/Favorites';
-import Profile from '../screens/Profile';
+import Profile from '../screens/Profile2';
 
 const Stack = createStackNavigator();
 
